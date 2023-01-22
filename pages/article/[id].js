@@ -22,8 +22,6 @@ export default article;
 // getStaticProps : fonction côté serveur qui permet de charger les données qu'on veut
 // pour voir le console log: localhost:3000/article/"id"
 export const getStaticProps =async(context)=>{
-    console.log("-----------context.params.id--------------------");
-    console.log(context.params.id);
     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`);
   const article = await res.json();
   // console.log("rrrr " + articles);
@@ -44,11 +42,7 @@ export const getStaticPaths =async(context)=>{
     const ids =articles.map((article)=>(
         article.id
     ))
-    console.log("-----------ids--------------------");
-    console.log(ids);
     const paths = ids.map((id)=>({params:{id:id.toString()}}));
-    console.log("-----------paths--------------------");
-    console.log(paths);
     return{
         paths,
         fallback:false,
